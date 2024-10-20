@@ -3,6 +3,7 @@
 require "bundler/gem_tasks"
 require "rake/extensiontask"
 require "rake/testtask"
+require "rubocop/rake_task"
 
 task build: :compile
 
@@ -27,6 +28,10 @@ end
 
 Rake::TestTask.new do |t|
   t.libs << "test"
-  t.test_files = FileList['test/test_*.rb']
+  t.test_files = FileList["test/test_*.rb"]
   t.verbose = true
 end
+
+RuboCop::RakeTask.new
+
+task lint: "rubocop:autocorrect_all"

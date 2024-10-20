@@ -1,10 +1,13 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class TestUUID < Minitest::Test
   def test_extension_path
-    Gem.stub(:loaded_specs, {
-      'sqlite_extensions-uuid' => Struct.new(:require_path).new("foo")
-    }) do
+    loaded_specs_stub = {
+      "sqlite_extensions-uuid" => Struct.new(:require_path).new("foo")
+    }
+    Gem.stub(:loaded_specs, loaded_specs_stub) do
       path = SqliteExtensions::UUID.extension_path
       assert_kind_of String, path
 
