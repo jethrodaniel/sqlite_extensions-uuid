@@ -15,6 +15,7 @@ Gem::Specification.new do |spec|
 
   spec.files = %w[
     lib/sqlite_extensions/uuid.rb
+    lib/sqlite_extensions/uuid/rails.rb
     ext/sqlite_extensions/uuid/sqlite3ext.h
     ext/sqlite_extensions/uuid/sqlite3.h
     ext/sqlite_extensions/uuid/sqlite3rc.h

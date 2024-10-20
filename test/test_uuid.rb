@@ -38,4 +38,8 @@ class TestUUID < Minitest::Test
       uuid
     )
   end
+
+  def test_rails_integration
+    skip "TODO"
+  end
 end
