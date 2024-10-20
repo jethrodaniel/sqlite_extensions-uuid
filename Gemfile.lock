@@ -7,18 +7,32 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.2)
+    debug (1.9.2)
+      irb (~> 1.10)
+      reline (>= 0.3.8)
+    io-console (0.7.2)
+    irb (1.14.1)
+      rdoc (>= 4.0.0)
+      reline (>= 0.4.2)
     json (2.7.2)
     language_server-protocol (3.17.0.3)
+    minitest (5.25.1)
     parallel (1.26.3)
     parser (3.3.5.0)
       ast (~> 2.4.1)
       racc
+    psych (5.1.2)
+      stringio
     racc (1.8.1)
     rainbow (3.1.1)
     rake (13.2.1)
     rake-compiler (1.2.8)
       rake
+    rdoc (6.7.0)
+      psych (>= 4.0.0)
     regexp_parser (2.9.2)
+    reline (0.5.10)
+      io-console (~> 0.5)
     rubocop (1.66.1)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -33,12 +47,15 @@ GEM
       parser (>= 3.3.1.0)
     ruby-progressbar (1.13.0)
     sqlite3 (2.1.0-x86_64-linux-gnu)
+    stringio (3.1.1)
     unicode-display_width (2.6.0)
 
 PLATFORMS
   x86_64-linux-gnu
 
 DEPENDENCIES
+  debug (>= 1.0.0)
+  minitest
   rake
   rake-compiler
   rubocop (~> 1.21)

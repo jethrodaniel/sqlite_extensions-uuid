@@ -23,6 +23,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   spec.extensions = ["ext/sqlite_extensions/uuid/extconf.rb"]
 
+  spec.add_development_dependency "debug", ">= 1.0.0"
+  spec.add_development_dependency "minitest"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rake-compiler"
   spec.add_development_dependency "rubocop", "~> 1.21"

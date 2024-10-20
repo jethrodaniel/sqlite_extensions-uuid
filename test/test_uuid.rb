@@ -21,8 +21,8 @@ class TestUUID < Minitest::Test
 
     db = SQLite3::Database.new ":memory:"
     db.enable_load_extension(true)
-    db.load_extension("lib/sqlite_extensions/uuid/uuid")
-    db.load_extension(SqliteExtensions::UUID.extension_path)
+    extension_path = File.join(__dir__, "../lib/sqlite_extensions/uuid/uuid")
+    db.load_extension(extension_path)
 
     result = db.execute("select uuid()")
     assert_kind_of Array, result
