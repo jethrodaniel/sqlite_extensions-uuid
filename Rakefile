@@ -32,6 +32,8 @@ Rake::TestTask.new do |t|
   t.verbose = true
 end
 
+task test: :compile
+
 RuboCop::RakeTask.new
 
 task lint: "rubocop:autocorrect_all"
