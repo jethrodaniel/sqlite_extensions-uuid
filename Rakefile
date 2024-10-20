@@ -19,11 +19,11 @@ task default: %i[clobber compile]
 task :update do
   sh "wget https://sqlite.org/2024/sqlite-autoconf-3460100.tar.gz"
   sh "tar xvf sqlite-autoconf-3460100.tar.gz"
-  sh "cp -v ./sqlite-autoconf-3460100/*.h ext/sqlite3_uuid/"
+  sh "cp -v ./sqlite-autoconf-3460100/*.h ext/sqlite_extensions/uuid/"
   sh "rm -rf sqlite-autoconf-3460100*"
 
   sh "wget https://github.com/sqlite/sqlite/raw/refs/tags/version-3.46.1/ext/misc/uuid.c"
-  sh "mv -v ./uuid.c ext/sqlite3_uuid/"
+  sh "mv -v ./uuid.c ext/sqlite_extensions/uuid/"
 end
 
 Rake::TestTask.new do |t|
