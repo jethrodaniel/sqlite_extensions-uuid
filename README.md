@@ -1,6 +1,6 @@
 # sqlite_extensions-uuid
 
-Sqlite's uuid extension, packaged as a gem.
+Sqlite's [uuid v4 extension](https://sqlite.org/src/file/ext/misc/uuid.c?t=version-3.46.1), packaged as a gem.
 
 Useful for using UUIDs as primary keys in a Rails app.
 
@@ -18,7 +18,7 @@ If you're _not_ using Rails, you can omit the `require` above.
 
 ## Usage
 
-The extension provides the following:
+Sqlite's uuid extension provides the following:
 
 - `uuid()` - generate a version 4 UUID as a string
 - `uuid_str(X)` - convert a UUID X into a well-formed UUID string
@@ -26,12 +26,12 @@ The extension provides the following:
 
 In a rails app:
 
-```
-bin/rails runner 'puts ActiveRecord::Base.connection.execute("select uuid_str(uuid())")'
-{"uuid_str(uuid()) /*application='MyApp'*/"=>"026fbfdf-fa1b-44ec-ab08-eaa9128866a4"}
+```ruby
+ActiveRecord::Base.connection.execute("select uuid_str(uuid())")
+#=> [{"uuid_str(uuid())"=>"56392d30-a2cf-47b9-895a-f8c1a1677bfc"}]
 ```
 
-For more information, see the extension's source code ([uuid.c](https://sqlite.org/src/file/ext/misc/uuid.c?t=version-3.46.1)).
+For more information, see the extension's [source code](https://sqlite.org/src/file/ext/misc/uuid.c?t=version-3.46.1)).
 
 ## Design
 
@@ -45,9 +45,10 @@ Additionally, it exposes a railtie (via `require: "sqlite_extensions/uuid/rails"
 
 ## Development
 
-To install locally
-
 ```
+# one-time setup
+bundle
+
 # build and run tests
 bundle exec rake test
 
