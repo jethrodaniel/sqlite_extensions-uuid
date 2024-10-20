@@ -24,4 +24,6 @@ Gem::Specification.new do |spec|
   spec.extensions = ["ext/sqlite_extensions/uuid/extconf.rb"]
 
   spec.add_development_dependency 'sqlite3', '~> 2.1.0'
+  spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'rake-compiler'
 end
