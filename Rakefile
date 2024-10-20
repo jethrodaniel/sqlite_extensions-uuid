@@ -29,7 +29,13 @@ task test: :default do
 
   db = SQLite3::Database.new ":memory:"
   db.enable_load_extension(true)
-  db.load_extension('./lib/sqlite3_uuid/uuid.so')
+  # db.load_extension('./lib/sqlite3_uuid/uuid')
+
+  # require 'sqlite3_uuid'
+  # ext = File.join(Gem.loaded_specs['sqlite3-ruby-uuid'].extensions_dir, 'sqlite3_uuid', 'uuid')
+
+  ext = File.join(RbConfig::CONFIG['sitearchdir'], 'sqlite3_uuid', 'uuid')
+  db.load_extension(ext)
 
   puts "--- Tests ---"
   puts "'select uuid()' => #{db.execute("select uuid()")}"
