@@ -31,7 +31,7 @@ ActiveRecord::Base.connection.execute("select uuid_str(uuid())")
 #=> [{"uuid_str(uuid())"=>"56392d30-a2cf-47b9-895a-f8c1a1677bfc"}]
 ```
 
-For more information, see the extension's [source code](https://sqlite.org/src/file/ext/misc/uuid.c?t=version-3.46.1)).
+For more information, see the extension's [source code](https://sqlite.org/src/file/ext/misc/uuid.c?t=version-3.46.1).
 
 ## Design
 
