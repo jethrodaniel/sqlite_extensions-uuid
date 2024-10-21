@@ -24,6 +24,8 @@ module SqliteExtensions
             Rails.logger.error do
               "Error loading sqlite extension '#{SqliteExtensions::UUID.extension_path}' (#{e})"
             end
+          ensure
+            @raw_connection.enable_load_extension(false)
           end
         end
       end

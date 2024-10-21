@@ -43,6 +43,8 @@ It then exposes a method (`SqliteExtensions::UUID.extension_path`) which returns
 
 For Rails, it also exposes a [railtie](https://api.rubyonrails.org/v7.2/classes/Rails/Railtie.html) (via `require: "sqlite_extensions/uuid/rails"`) that patches Rails' [configure_connection](https://github.com/rails/rails/blob/v8.0.0.rc1/activerecord/lib/active_record/connection_adapters/sqlite3_adapter.rb#L815) method for the SQLite adapter, so that all SQLite database connections load the extension.
 
+Ideally, Rails will eventually provide an official way to configure the SQLite connection, at which point we can migrate the railtie to that approach.
+
 
 ## Development
 
