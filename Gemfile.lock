@@ -58,7 +58,7 @@ DEPENDENCIES
   minitest
   rake
   rake-compiler
-  rubocop (~> 1.21)
+  rubocop
   sqlite3 (~> 2.1.0)
   sqlite_extensions-uuid!
 
