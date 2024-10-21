@@ -68,5 +68,4 @@ The following files are copied verbatim from SQLite, and are used under their ow
 
 - `ext/sqlite_extensions/uuid/sqlite3ext.h`
 - `ext/sqlite_extensions/uuid/sqlite3.h`
-- `ext/sqlite_extensions/uuid/sqlite3rc.h`
 - `ext/sqlite_extensions/uuid/uuid.c`
