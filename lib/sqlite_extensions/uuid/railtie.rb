@@ -20,10 +20,7 @@ module SqliteExtensions
             @raw_connection.enable_load_extension(true)
             @raw_connection.load_extension(SqliteExtensions::UUID.extension_path)
           rescue SQLite3::Exception => e
-            # no such function: uuid (SQLite3::SQLException)
-            Rails.logger.error do
-              "Error loading sqlite extension '#{SqliteExtensions::UUID.extension_path}' (#{e})"
-            end
+            Rails.logger.error { "Error loading sqlite extension '#{SqliteExtensions::UUID.extension_path}' (#{e})" }
           ensure
             @raw_connection.enable_load_extension(false)
           end
