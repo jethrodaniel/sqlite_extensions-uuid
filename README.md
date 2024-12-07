@@ -12,6 +12,15 @@ Add this to your `Gemfile`:
 gem "sqlite_extensions-uuid", github: "jethrodaniel/sqlite_extensions-uuid"
 ```
 
+In your Rails app, you'll need to load the extension in your `config/database.yml` like so:
+
+```yaml
+development:
+  adapter: sqlite3
+  extensions:
+    - <%= SqliteExtensions::UUID.to_path %>
+```
+
 ## Usage
 
 SQLite's uuid extension provides the following:
