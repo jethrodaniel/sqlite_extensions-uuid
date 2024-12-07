@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.authors = ["Mark Delk"]
   spec.email = ["jethrodaniel@gmail.com"]
 
-  spec.summary = "Sqlite's uuid extension"
+  spec.summary = "SQLite's UUID v4 extension, packaged as a gem"
   spec.homepage = "https://github.com/jethrodaniel/sqlite_extensions-uuid"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.0.0"
