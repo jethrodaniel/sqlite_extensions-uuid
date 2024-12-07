@@ -3,17 +3,21 @@
 require "test_helper"
 
 class TestUUID < Minitest::Test
-  def test_extension_path
+  def test_to_path
     loaded_specs_stub = {
       "sqlite_extensions-uuid" => Struct.new(:require_path).new("foo")
     }
     Gem.stub(:loaded_specs, loaded_specs_stub) do
-      path = SqliteExtensions::UUID.extension_path
+      path = SqliteExtensions::UUID.to_path
       assert_kind_of String, path
 
       assert path.end_with?("sqlite_extensions/uuid/uuid")
       assert_equal "foo/sqlite_extensions/uuid/uuid", path
     end
+  end
+
+  def test_extension_path_alias
+    assert_equal SqliteExtensions::UUID.to_path, SqliteExtensions::UUID.extension_path
   end
 
   def test_it_works
