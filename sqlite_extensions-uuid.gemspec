@@ -11,8 +11,6 @@ Gem::Specification.new do |spec|
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.0.0"
 
-  # spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
-
   spec.files = %w[
     lib/sqlite_extensions/uuid.rb
     ext/sqlite_extensions/uuid/sqlite3ext.h
