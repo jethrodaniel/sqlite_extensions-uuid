@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sqlite_extensions-uuid (0.0.2)
+    sqlite_extensions-uuid (1.0.0)
       sqlite3 (>= 2.4.0)
 
 GEM
