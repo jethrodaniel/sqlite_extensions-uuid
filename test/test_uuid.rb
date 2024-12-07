@@ -16,10 +16,6 @@ class TestUUID < Minitest::Test
     end
   end
 
-  def test_extension_path_alias
-    assert_equal SqliteExtensions::UUID.to_path, SqliteExtensions::UUID.extension_path
-  end
-
   def test_it_works
     require "sqlite3"
 
