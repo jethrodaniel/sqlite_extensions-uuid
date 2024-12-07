@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name = "sqlite_extensions-uuid"
-  spec.version = "0.0.1"
+  spec.version = "0.0.2"
   spec.authors = ["Mark Delk"]
   spec.email = ["jethrodaniel@gmail.com"]
 
@@ -15,8 +15,6 @@ Gem::Specification.new do |spec|
 
   spec.files = %w[
     lib/sqlite_extensions/uuid.rb
-    lib/sqlite_extensions/uuid/rails.rb
-    lib/sqlite_extensions/uuid/railtie.rb
     ext/sqlite_extensions/uuid/sqlite3ext.h
     ext/sqlite_extensions/uuid/sqlite3.h
     ext/sqlite_extensions/uuid/uuid.c
@@ -24,10 +22,11 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   spec.extensions = ["ext/sqlite_extensions/uuid/extconf.rb"]
 
+  spec.add_dependency "sqlite3", ">= 2.4.0"
+
   spec.add_development_dependency "debug", ">= 1.0.0"
   spec.add_development_dependency "minitest"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rake-compiler"
   spec.add_development_dependency "rubocop"
-  spec.add_development_dependency "sqlite3", "~> 2.1.0"
 end

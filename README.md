@@ -1,20 +1,16 @@
 # sqlite_extensions-uuid
 
-SQLite's [uuid v4 extension](https://sqlite.org/src/file/ext/misc/uuid.c?t=version-3.46.1), packaged as a gem.
+SQLite's [UUID v4 extension](https://sqlite.org/src/file/ext/misc/uuid.c?t=version-3.46.1), packaged as a gem.
 
-Useful for using UUIDs as primary keys in a Rails app.
+The main use-case is to allow using UUIDs as primary keys with SQLite in [Rails](https://rubyonrails.org/) apps.
 
 ## Installation
 
-Add this to your gemfile:
+Add this to your `Gemfile`:
 
 ```ruby
-gem "sqlite_extensions-uuid",
-  git: "https://github.com/jethrodaniel/sqlite_extensions-uuid",
-  require: "sqlite_extensions/uuid/rails"
+gem "sqlite_extensions-uuid", github: "jethrodaniel/sqlite_extensions-uuid"
 ```
-
-If you're _not_ using Rails, you can omit the `require` above.
 
 ## Usage
 
@@ -24,28 +20,24 @@ SQLite's uuid extension provides the following:
 - `uuid_str(X)` - convert a UUID X into a well-formed UUID string
 - `uuid_blob(X)` - convert a UUID X into a 16-byte blob
 
-In a rails app:
+For example, in a rails app:
 
 ```ruby
 ActiveRecord::Base.connection.execute("select uuid_str(uuid())")
 #=> [{"uuid_str(uuid())"=>"56392d30-a2cf-47b9-895a-f8c1a1677bfc"}]
 ```
 
-For more information, see the extension's [source code](https://sqlite.org/src/file/ext/misc/uuid.c?t=version-3.46.1).
+For more information about the extension itself, see the extension's [source code](https://sqlite.org/src/file/ext/misc/uuid.c?t=version-3.46.1).
 
-## Design
+## How it works
 
 This gem compiles SQLite's uuid extension into a shared library using Ruby's native-gem functionality.
 
-It doesn't actually compile a Ruby native extension, it just uses the ruby extension process to compile the SQLite library.
+It doesn't _actually_ compile a Ruby native extension, it just uses the ruby extension process to compile the SQLite UUID library.
 
-It then exposes a method (`SqliteExtensions::UUID.to_path`) which returns the location of that shared library, which can be passed to [sqlite3](https://github.com/sparklemotion/sqlite3-ruby)'s `load_extension` method.
+It then exposes a method, `SqliteExtensions::UUID.to_path`, which returns the location of that shared library.
 
-For Rails, it also exposes a [railtie](https://api.rubyonrails.org/v7.2/classes/Rails/Railtie.html) (via `require: "sqlite_extensions/uuid/rails"`) that patches Rails' [configure_connection](https://github.com/rails/rails/blob/v8.0.0.rc1/activerecord/lib/active_record/connection_adapters/sqlite3_adapter.rb#L815) method for the SQLite adapter, so that all SQLite database connections load the extension.
-
-This doesn't scale well to supporting multiple SQLite extensions, but works fine if all you need is the UUID extension.
-
-Ideally, Rails will eventually provide an official way to configure the SQLite connection, at which point we can migrate the railtie to that approach.
+This can be passed to [sqlite3](https://github.com/sparklemotion/sqlite3-ruby) in `Database.new(extensions: [])` or `Database#load_extension`.
 
 ## Development
 
