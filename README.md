@@ -6,13 +6,13 @@ The main use-case is to allow using UUIDs as primary keys with SQLite in [Rails]
 
 ## Installation
 
-Add this gem to your application's `Gemfile`, by running this:
+Add this gem to your application's `Gemfile` by running this:
 
 ```
 bundle add sqlite_extensions-uuid
 ```
 
-or by manually adding this line and running `bundle`:
+or by adding this line and running `bundle`:
 
 ```ruby
 gem "sqlite_extensions-uuid"
