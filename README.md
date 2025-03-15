@@ -35,14 +35,33 @@ SQLite's uuid extension provides the following:
 - `uuid_str(X)` - convert a UUID X into a well-formed UUID string
 - `uuid_blob(X)` - convert a UUID X into a 16-byte blob
 
-For example, in a rails app:
+For more information about the extension itself, see the extension's [source code](https://sqlite.org/src/file/ext/misc/uuid.c?t=version-3.46.1).
+
+### Examples
+
+Use as a primary key in migrations:
+
+```
+bin/rails g model User email_address:uniq:index
+```
+```ruby
+class CreateUsers < ActiveRecord::Migration[8.0]
+  def change
+    create_table :users, id: :string, default: -> { "uuid()" }, limit: 36 do |t|
+      t.string :email_address, null: false
+      t.timestamps
+    end
+    add_index :users, :email_address, unique: true
+  end
+end
+```
+
+Call SQL directly:
 
 ```ruby
 ActiveRecord::Base.connection.execute("select uuid_str(uuid())")
 #=> [{"uuid_str(uuid())"=>"56392d30-a2cf-47b9-895a-f8c1a1677bfc"}]
 ```
-
-For more information about the extension itself, see the extension's [source code](https://sqlite.org/src/file/ext/misc/uuid.c?t=version-3.46.1).
 
 ## How it works
 
