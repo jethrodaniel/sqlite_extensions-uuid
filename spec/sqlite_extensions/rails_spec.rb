@@ -3,7 +3,6 @@
 # not required by our gem, but needed for these tests
 require "sqlite3"
 require "active_record/railtie"
-require "minitest/autorun"
 
 # Adapted from https://github.com/rails/rails/blob/v8.0.2/guides/bug_report_templates/active_record_migrations.rb
 #

@@ -7,10 +7,7 @@ require "rubocop/rake_task"
 RuboCop::RakeTask.new
 
 require "rspec/core/rake_task"
-RSpec::Core::RakeTask.new(:spec) do |c|
-  # loading rails in this file breaks `rake`
-  c.exclude_pattern = "spec/sqlite_extensions/rails_spec.rb"
-end
+RSpec::Core::RakeTask.new(:spec)
 
 Rake::ExtensionTask.new("sqlite_extensions/uuid") do |ext|
   ext.gem_spec = Gem::Specification.load("sqlite_extensions-uuid.gemspec")
