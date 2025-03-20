@@ -25,6 +25,7 @@ development:
   adapter: sqlite3
   extensions:
     - <%= SqliteExtensions::UUID.to_path %>
+  # ...
 ```
 
 ## Usage
