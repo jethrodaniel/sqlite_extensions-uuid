@@ -1,0 +1,5 @@
+production:
+  database: ':memory:'
+  adapter: sqlite3
+  extensions:
+    - <%= SqliteExtensions::UUID.to_path %>

@@ -12,11 +12,6 @@ RSpec.describe "Sqlite3 usage" do # rubocop:disable RSpec/DescribeClass
     allow(Gem).to receive(:loaded_specs).and_return("sqlite_extensions-uuid" => gemspec)
   end
 
-  # good enough for testing
-  let(:uuid_regex) do
-    /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i
-  end
-
   it "works when passed as an extension to SQLite3::Database.new" do
     db = SQLite3::Database.new(":memory:", extensions: [SqliteExtensions::UUID.to_path])
 
@@ -24,7 +19,7 @@ RSpec.describe "Sqlite3 usage" do # rubocop:disable RSpec/DescribeClass
 
     expect(result).to match([[an_instance_of(String)]])
     uuid = result.first.first
-    expect(uuid).to match(uuid_regex)
+    expect(uuid).to match(UUID_REGEX)
   end
 
   it "works when using `enable_load_extension`" do
@@ -36,6 +31,6 @@ RSpec.describe "Sqlite3 usage" do # rubocop:disable RSpec/DescribeClass
 
     expect(result).to match([[an_instance_of(String)]])
     uuid = result.first.first
-    expect(uuid).to match(uuid_regex)
+    expect(uuid).to match(UUID_REGEX)
   end
 end
