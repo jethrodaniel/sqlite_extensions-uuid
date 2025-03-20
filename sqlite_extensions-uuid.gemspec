@@ -13,13 +13,7 @@ Gem::Specification.new do |spec|
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.0.0"
 
-  spec.files = %w[
-    lib/sqlite_extensions/uuid.rb
-    lib/sqlite_extensions/uuid/version.rb
-    ext/sqlite_extensions/uuid/sqlite3ext.h
-    ext/sqlite_extensions/uuid/sqlite3.h
-    ext/sqlite_extensions/uuid/uuid.c
-  ]
+  spec.files = Dir.glob("lib/**/*.rb") + Dir.glob("ext/**/*.{c,h}")
   spec.require_paths = ["lib"]
   spec.extensions = ["ext/sqlite_extensions/uuid/extconf.rb"]
 
@@ -29,5 +23,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rake-compiler"
   spec.add_development_dependency "rspec"
-  spec.add_development_dependency "rubocop"
+  spec.add_development_dependency "standard"
+  spec.add_development_dependency "rubocop-rake"
+  spec.add_development_dependency "rubocop-rspec"
+  spec.add_development_dependency "rubocop-performance"
 end

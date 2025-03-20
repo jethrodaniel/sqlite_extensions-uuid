@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
-require "sqlite_extensions/uuid"
-
-# NOTE: `sqlite3` isn't required by our gem, but we need it for these tests.
+# not required by our gem, but needed for these tests
 require "sqlite3"
 
-RSpec.describe "Sqlite3 usage" do
+RSpec.describe "Sqlite3 usage" do # rubocop:disable RSpec/DescribeClass
   before do
-    gemspec = instance_double(Gem::Specification, require_path: File.join(__dir__, "../lib"))
+    gemspec = instance_double(
+      Gem::Specification,
+      require_path: File.join(__dir__, "../../lib")
+    )
     allow(Gem).to receive(:loaded_specs).and_return("sqlite_extensions-uuid" => gemspec)
   end
 

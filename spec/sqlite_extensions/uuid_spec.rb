@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require "sqlite_extensions/uuid"
-
-RSpec.describe SqliteExtensions::UUID do # rubocop:disable Metrics/BlockLength
+RSpec.describe SqliteExtensions::UUID do
   it "has a version" do
     expect(described_class::VERSION).to eq "1.0.1"
   end
@@ -14,14 +12,14 @@ RSpec.describe SqliteExtensions::UUID do # rubocop:disable Metrics/BlockLength
     end
 
     it "returns the path to the compiled extension" do
-      path = SqliteExtensions::UUID.to_path
+      path = described_class.to_path
 
       expect(path).to eq "foo/sqlite_extensions/uuid/uuid"
     end
   end
 
   it "has the correct gemspec info" do
-    path = File.expand_path("../sqlite_extensions-uuid.gemspec", __dir__)
+    path = File.expand_path("../../sqlite_extensions-uuid.gemspec", __dir__)
     gemspec = Gem::Specification.load path
 
     expect(gemspec).to have_attributes(
@@ -32,6 +30,7 @@ RSpec.describe SqliteExtensions::UUID do # rubocop:disable Metrics/BlockLength
         ext/sqlite_extensions/uuid/sqlite3.h
         ext/sqlite_extensions/uuid/sqlite3ext.h
         ext/sqlite_extensions/uuid/uuid.c
+        lib/sqlite_extensions-uuid.rb
         lib/sqlite_extensions/uuid.rb
         lib/sqlite_extensions/uuid/version.rb
       ],

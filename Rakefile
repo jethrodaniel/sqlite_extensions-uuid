@@ -9,15 +9,12 @@ RuboCop::RakeTask.new
 require "rspec/core/rake_task"
 RSpec::Core::RakeTask.new(:spec)
 
-task build: :compile
-
-GEMSPEC = Gem::Specification.load(Dir.glob("*.gemspec").first)
-
-Rake::ExtensionTask.new("sqlite_extensions/uuid", GEMSPEC) do |ext|
+Rake::ExtensionTask.new("sqlite_extensions/uuid") do |ext|
   ext.name = "uuid"
   ext.lib_dir = "lib/sqlite_extensions/uuid"
 end
 
+desc "Update vendored SQLite files"
 task :update do
   sh "wget https://sqlite.org/2024/sqlite-autoconf-3460100.tar.gz"
   sh "tar xvf sqlite-autoconf-3460100.tar.gz"
@@ -28,6 +25,7 @@ task :update do
   sh "mv -v ./uuid.c ext/sqlite_extensions/uuid/"
 end
 
+desc "Run specs"
 task spec: :compile
 
 task default: %i[clobber compile spec rubocop]
