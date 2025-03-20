@@ -8,19 +8,21 @@ require "active_record/railtie"
 #
 RSpec.describe "Rails usage" do # rubocop:disable RSpec/DescribeClass
   before do
-    gemspec = instance_double(
-      Gem::Specification,
-      require_path: File.join(__dir__, "../../lib")
-    )
-    allow(Gem).to receive(:loaded_specs).and_return("sqlite_extensions-uuid" => gemspec)
+    allow(Gem)
+      .to receive(:loaded_specs)
+      .and_return("sqlite_extensions-uuid" => instance_double(
+        Gem::Specification,
+        require_path: File.join(__dir__, "../../lib")
+      ))
 
-    ENV["RAILS_ENV"] = "production"
+    stub_const("ENV", {"RAILS_ENV" => "production"})
 
     # config/application.rb
     stub_const("TestApp", Class.new(Rails::Application) do
       config.load_defaults Rails::VERSION::STRING.to_f
-      config.eager_load = false
+      config.eager_load = true
       config.secret_key_base = "secret_key_base"
+      config.logger = ActiveSupport::Logger.new($stdout)
     end)
     Rails.application.initialize!
 
